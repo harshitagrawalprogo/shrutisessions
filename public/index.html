@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shruti Agrawal — Mental Health Advocate</title>
+<meta name="description" content="Book a private 1-on-1 online session with Shruti Agrawal, Mental Health Advocate. Safe, confidential, supportive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500;600&family=Satisfy&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF3EE;--blush:#F7E4DD;--rose:#D89FA4;--maroon:#8E4549;--maroon-deep:#6F343C;--forest:#3E4A33;
+  --ink:#43373A;--soft:#8A7378;--line:#ECD8D1;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ── Utility ── */
+.jost{font-family:'Jost',sans-serif}
+.playfair{font-family:'Playfair Display',serif}
+.satisfy{font-family:'Satisfy',cursive}
+.container{max-width:720px;margin:0 auto;padding:0 20px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ── Scroll reveal ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.55s ease,transform 0.55s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ── Hero ── */
+.hero{text-align:center;padding:64px 20px 48px;background:var(--cream)}
+.hero-script{font-family:'Satisfy',cursive;font-size:clamp(18px,4vw,22px);color:var(--soft);line-height:1.8;margin-bottom:4px}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(38px,9vw,64px);color:var(--ink);letter-spacing:0.01em;line-height:1.1;margin:16px 0 12px}
+.hero-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:16px 0}
+.hero-divider span{width:48px;height:1px;background:var(--rose);display:block}
+.hero-heart{color:var(--rose);font-size:18px}
+.hero-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.22em;color:var(--forest);text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px}
+.leaf-svg{display:inline-block;vertical-align:middle}
+
+/* ── Investment card ── */
+.investment{background:#fff;border:1px solid var(--line);border-radius:12px;padding:36px 32px;text-align:center;margin:0 auto 48px;max-width:480px}
+.investment-title{font-family:'Playfair Display',serif;font-size:clamp(18px,4vw,22px);color:var(--ink);margin-bottom:12px}
+.investment-title em{color:var(--maroon);font-style:italic}
+.investment-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.investment-pill{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.14em;color:var(--forest);border:1px solid var(--line);border-radius:99px;padding:5px 14px}
+
+/* ── Fee card ── */
+.fee-section{position:relative;padding:0 20px 0;margin-bottom:48px}
+.fee-card{background:var(--maroon);color:#fff;border-radius:14px;padding:36px 28px 48px;text-align:center;position:relative;overflow:hidden;max-width:480px;margin:0 auto}
+.fee-card-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.2em;opacity:0.75;margin-bottom:12px}
+.fee-amount{font-family:'Playfair Display',serif;font-size:clamp(42px,10vw,60px);color:#fff;line-height:1}
+.fee-suffix{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:0.1em;opacity:0.8;margin-top:4px}
+.fee-ribbon{
+  position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);
+  background:var(--forest);color:#fff;font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:0.18em;
+  padding:9px 28px;white-space:nowrap;
+  clip-path:polygon(12px 0%,calc(100% - 12px) 0%,100% 50%,calc(100% - 12px) 100%,12px 100%,0% 50%);
+}
+
+/* ── Step line ── */
+.step-line{text-align:center;padding:0 20px 40px;max-width:480px;margin:0 auto}
+.step-line p{font-family:'Lora',serif;font-size:14px;color:var(--soft);line-height:1.9;margin-bottom:4px}
+.step-line strong{color:var(--ink)}
+
+/* ── Services strip ── */
+.services{background:var(--blush);padding:52px 20px;margin-bottom:0}
+.services-title{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.22em;color:var(--forest);text-transform:uppercase;text-align:center;margin-bottom:32px}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0;max-width:680px;margin:0 auto}
+.service-tile{text-align:center;padding:24px 16px;border-right:1px dashed var(--rose)}
+.service-tile:last-child{border-right:none}
+.service-icon{width:40px;height:40px;margin:0 auto 12px;background:var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.service-icon svg{width:20px;height:20px;stroke:var(--forest);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.service-name{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.14em;color:var(--ink);text-transform:uppercase;line-height:1.5}
+@media(max-width:500px){
+  .services-grid{grid-template-columns:1fr 1fr}
+  .service-tile{border-right:none;border-bottom:1px dashed var(--rose)}
+  .service-tile:nth-child(odd){border-right:1px dashed var(--rose)}
+  .service-tile:nth-last-child(-n+2):nth-child(odd),.service-tile:last-child{border-bottom:none}
+}
+
+/* ── Booking widget ── */
+.booking{padding:56px 20px;scroll-margin-top:24px}
+.booking-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:36px 28px;max-width:520px;margin:0 auto}
+.booking-title{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,28px);color:var(--ink);margin-bottom:6px}
+.booking-sub{font-family:'Lora',serif;font-size:13px;color:var(--soft);margin-bottom:28px}
+.step-label{font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:0.18em;color:var(--soft);text-transform:uppercase;margin-bottom:12px}
+
+/* Date chips */
+.date-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:var(--line) transparent;margin-bottom:24px}
+.date-scroll::-webkit-scrollbar{height:4px}
+.date-scroll::-webkit-scrollbar-track{background:transparent}
+.date-scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
+.date-chip{flex:0 0 auto;padding:10px 14px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;text-align:center;min-width:64px;background:#fff;transition:background 0.15s,border-color 0.15s;-webkit-tap-highlight-color:transparent}
+.date-chip:hover{border-color:var(--rose)}
+.date-chip.selected{background:var(--maroon);border-color:var(--maroon);color:#fff}
+.date-chip-dow{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.14em;color:var(--soft);text-transform:uppercase;display:block;margin-bottom:2px}
+.date-chip.selected .date-chip-dow{color:rgba(255,255,255,0.75)}
+.date-chip-day{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);display:block;line-height:1.1}
+.date-chip.selected .date-chip-day{color:#fff}
+.date-chip-mon{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:0.1em;color:var(--soft);text-transform:uppercase;display:block;margin-top:2px}
+.date-chip.selected .date-chip-mon{color:rgba(255,255,255,0.75)}
+.date-chip:focus-visible{outline:2px solid var(--maroon);outline-offset:2px}
+
+/* Slot pills */
+.slot-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;min-height:40px}
+.slot-pill{padding:8px 16px;border:1.5px solid var(--line);border-radius:99px;cursor:pointer;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:0.1em;color:var(--ink);background:#fff;transition:background 0.15s,border-color 0.15s}
+.slot-pill:hover{border-color:var(--forest)}
+.slot-pill.selected{background:var(--forest);border-color:var(--forest);color:#fff}
+.slot-pill:focus-visible{outline:2px solid var(--forest);outline-offset:2px}
+.slot-empty{font-family:'Lora',serif;font-size:13px;color:var(--soft);font-style:italic;align-self:center}
+
+/* Form fields */
+.form-group{margin-bottom:16px}
+.form-label{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.16em;color:var(--soft);text-transform:uppercase;display:block;margin-bottom:6px}
+.form-input{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:8px;font-family:'Lora',serif;font-size:14px;color:var(--ink);background:#fff;outline:none;transition:border-color 0.15s}
+.form-input:focus{border-color:var(--maroon)}
+.form-input::placeholder{color:#C4ADB1}
+textarea.form-input{resize:vertical;min-height:80px}
+.honeypot{position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none}
+
+/* Error + submit */
+.booking-error{background:#FFF0F0;border:1px solid #E8B4B8;border-radius:8px;padding:12px 16px;font-family:'Jost',sans-serif;font-size:12px;color:#8E4549;margin-bottom:16px;display:none}
+.booking-error.visible{display:block}
+.btn-book{width:100%;padding:14px;background:var(--maroon);color:#fff;border:none;border-radius:99px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:background 0.15s;margin-top:4px}
+.btn-book:hover:not(:disabled){background:var(--maroon-deep)}
+.btn-book:disabled{opacity:0.65;cursor:not-allowed}
+.btn-book:focus-visible{outline:2px solid var(--maroon);outline-offset:2px}
+.payment-note{font-family:'Lora',serif;font-size:12px;color:var(--soft);text-align:center;margin-top:12px;line-height:1.6}
+
+/* Success state */
+.booking-success{display:none;text-align:center;padding:8px 0}
+.booking-success.visible{display:block}
+.success-icon{width:60px;height:60px;background:var(--forest);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.success-icon svg{width:28px;height:28px;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.success-title{font-family:'Playfair Display',serif;font-size:24px;color:var(--ink);margin-bottom:6px}
+.success-script{font-family:'Satisfy',cursive;font-size:16px;color:var(--soft);margin-bottom:24px}
+.success-details{border:1.5px dashed var(--line);border-radius:10px;padding:20px;text-align:left;margin-bottom:20px}
+.success-row{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.success-row:last-child{border-bottom:none}
+.success-row-label{font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:0.16em;color:var(--soft);text-transform:uppercase;min-width:80px;padding-top:2px}
+.success-row-value{font-family:'Lora',serif;font-size:13px;color:var(--ink)}
+.success-row-value a{color:var(--maroon);text-decoration:none}
+.success-row-value a:hover{text-decoration:underline}
+.btn-join{display:inline-block;padding:13px 28px;background:var(--maroon);color:#fff;border-radius:99px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;margin-bottom:16px}
+.success-email-note{font-family:'Lora',serif;font-size:12px;color:var(--soft);line-height:1.7}
+
+/* ── Qualifications + quote ── */
+.qual-quote{padding:52px 20px;max-width:600px;margin:0 auto}
+.qual-title{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.22em;color:var(--forest);text-transform:uppercase;margin-bottom:20px}
+.qual-list{list-style:none;margin-bottom:40px}
+.qual-list li{display:flex;gap:10px;font-family:'Lora',serif;font-size:14px;color:var(--ink);padding:8px 0;border-bottom:1px solid var(--line)}
+.qual-list li::before{content:"✓";color:var(--forest);font-family:'Jost',sans-serif;font-size:12px;flex-shrink:0;padding-top:2px}
+.quote-block{background:var(--blush);border-radius:12px;padding:28px 24px;border-left:3px solid var(--rose)}
+.quote-text{font-family:'Playfair Display',serif;font-size:clamp(15px,3vw,18px);color:var(--ink);font-style:italic;line-height:1.7;margin-bottom:12px}
+.quote-attr{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.16em;color:var(--soft);text-transform:uppercase}
+
+/* ── Online pill ── */
+.online-pill{text-align:center;padding:24px 20px}
+.online-pill span{display:inline-block;border:1.5px dashed var(--rose);border-radius:99px;padding:9px 22px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.18em;color:var(--soft);text-transform:uppercase}
+
+/* ── Footer ── */
+footer{margin-top:0}
+.footer-maroon{background:var(--maroon);padding:40px 20px;text-align:center}
+.footer-script{font-family:'Satisfy',cursive;font-size:22px;color:rgba(255,255,255,0.9);margin-bottom:12px}
+.footer-email a{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.7);text-decoration:none;text-transform:uppercase}
+.footer-email a:hover{color:#fff}
+.footer-cream{background:var(--cream);padding:20px;text-align:center}
+.footer-trust{font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:0.14em;color:var(--soft);text-transform:uppercase}
+.footer-forest{background:var(--forest);padding:16px 20px;text-align:center}
+.footer-you{font-family:'Jost',sans-serif;font-size:9.5px;letter-spacing:0.22em;color:rgba(255,255,255,0.85);text-transform:uppercase}
+
+/* ── Nav ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(251,243,238,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 20px}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;max-width:720px;margin:0 auto}
+.nav-brand{font-family:'Playfair Display',serif;font-size:15px;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;gap:20px;list-style:none}
+.nav-links a{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.16em;color:var(--soft);text-decoration:none;text-transform:uppercase;transition:color 0.15s}
+.nav-links a:hover{color:var(--ink)}
+.nav-book{color:var(--maroon)!important}
+@media(max-width:480px){.nav-links{display:none}}
+
+/* ── Mobile improvements ── */
+@media(max-width:480px){
+  /* Hero */
+  .hero{padding:40px 16px 32px}
+  .hero-script{font-size:16px}
+
+  /* Investment card */
+  .investment{padding:24px 18px;margin-bottom:32px}
+  .investment-pills{gap:6px}
+  .investment-pill{font-size:10px;padding:4px 12px}
+
+  /* Fee card */
+  .fee-card{padding:28px 18px 52px}
+  .fee-ribbon{font-size:8.5px;letter-spacing:0.12em;padding:8px 20px}
+
+  /* Step line */
+  .step-line{padding:0 16px 32px}
+
+  /* Services */
+  .services{padding:40px 12px}
+  .service-tile{padding:18px 10px}
+
+  /* Booking widget */
+  .booking{padding:36px 12px}
+  .booking-card{padding:24px 16px}
+  .booking-title{font-size:20px}
+
+  /* Bigger touch targets for date chips */
+  .date-chip{min-width:58px;padding:10px 10px}
+  .date-chip-day{font-size:18px}
+
+  /* Slot pills */
+  .slot-pill{padding:10px 14px;font-size:12px}
+
+  /* Success state */
+  .success-details{padding:14px}
+  .success-row{flex-direction:column;gap:4px}
+  .success-row-label{min-width:unset}
+
+  /* Qualifications */
+  .qual-quote{padding:36px 16px}
+
+  /* Online pill */
+  .online-pill span{font-size:9px;padding:8px 16px}
+}
+
+@media(max-width:360px){
+  .fee-ribbon{font-size:7.5px;letter-spacing:0.08em;padding:7px 14px}
+  .date-chip{min-width:52px}
+  .booking-card{padding:20px 12px}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">Shruti Agrawal</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#booking">Book</a></li>
+      <li><a href="/admin.html">Admin</a></li>
+      <li><a href="#booking" class="nav-book">₹299</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero reveal" id="top">
+  <p class="hero-script">Take care of your mind,</p>
+  <p class="hero-script" style="margin-bottom:0">it's the one place you live in.</p>
+  <h1 class="hero-name playfair">Shruti Agrawal</h1>
+  <div class="hero-divider">
+    <span></span>
+    <span class="hero-heart" aria-hidden="true">♡</span>
+    <span></span>
+  </div>
+  <p class="hero-label jost">
+    <svg class="leaf-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-5 8-13A8 8 0 0 0 4 9c0 8 8 13 8 13z"/></svg>
+    Mental Health Advocate
+    <svg class="leaf-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-5 8-13A8 8 0 0 0 4 9c0 8 8 13 8 13z"/></svg>
+  </p>
+</section>
+
+<!-- ── Investment ── -->
+<div class="container">
+  <div class="investment reveal">
+    <h2 class="investment-title playfair">Mental health is an <em>investment,</em><br>not an expense. ♡</h2>
+    <p style="font-family:'Lora',serif;font-size:13px;color:var(--soft);margin-top:8px">A single conversation can shift your entire perspective.</p>
+    <div class="investment-pills">
+      <span class="investment-pill">Understand.</span>
+      <span class="investment-pill">Heal.</span>
+      <span class="investment-pill">Grow.</span>
+      <span class="investment-pill">Thrive.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── Fee card ── -->
+<div class="fee-section reveal">
+  <div class="fee-card">
+    <p class="fee-card-label jost">BOOK YOUR FIRST SESSION</p>
+    <div class="fee-amount playfair">₹299<span style="font-size:28px;opacity:0.7">/-</span></div>
+    <p class="fee-suffix">per session</p>
+    <div class="fee-ribbon jost">BECAUSE YOU DESERVE TO FEEL BETTER ♡</div>
+  </div>
+</div>
+
+<!-- ── Step line ── -->
+<div class="step-line reveal">
+  <p>One small step today.</p>
+  <p>One <strong>meaningful conversation</strong> that changes tomorrow.</p>
+  <p>Your healing journey begins with a <strong>single session.</strong></p>
+</div>
+
+<!-- ── Services ── -->
+<section class="services reveal" id="services" aria-label="Services offered">
+  <div class="services-title jost">What We Work Through Together</div>
+  <div class="services-grid">
+    <div class="service-tile">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      </div>
+      <p class="service-name">Stress &amp; Anxiety</p>
+    </div>
+    <div class="service-tile">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <p class="service-name">Emotional Wellness</p>
+    </div>
+    <div class="service-tile">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-5.33 0-8 2.67-8 4v1h16v-1c0-1.33-2.67-4-8-4z"/></svg>
+      </div>
+      <p class="service-name">Self-Esteem &amp; Confidence</p>
+    </div>
+    <div class="service-tile">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <p class="service-name">Communication Skills</p>
+    </div>
+    <div class="service-tile">
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2s-8 3-8 10a8 8 0 0 0 16 0C20 5 12 2 12 2z"/><path d="M12 22V12"/><path d="M12 12l4-4"/><path d="M12 16l-4-4"/></svg>
+      </div>
+      <p class="service-name">Personal Growth</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Booking widget ── -->
+<section class="booking reveal" id="booking" aria-label="Book a session">
+  <div class="booking-card">
+    <h2 class="booking-title playfair">Book your session</h2>
+    <p class="booking-sub">Pick a day and time that suits you — everything happens online.</p>
+
+    <!-- Widget (shown while booking) -->
+    <div id="widget-form">
+      <!-- Step 1: date -->
+      <p class="step-label">1. Choose a day</p>
+      <div class="date-scroll" id="date-scroll" role="group" aria-label="Select a date"></div>
+
+      <!-- Step 2: time -->
+      <p class="step-label">2. Choose a time <span style="font-size:9px">(IST)</span></p>
+      <div class="slot-grid" id="slot-grid" role="group" aria-label="Select a time slot">
+        <span class="slot-empty">Select a day to see available times.</span>
+      </div>
+
+      <!-- Step 3: details -->
+      <p class="step-label">3. Your details</p>
+      <div role="alert" aria-live="polite" class="booking-error" id="booking-error"></div>
+      <form id="booking-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="client-name">Your name</label>
+          <input class="form-input" type="text" id="client-name" name="name" autocomplete="name" placeholder="Your name" minlength="2" maxlength="80" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="client-email">Email address</label>
+          <input class="form-input" type="email" id="client-email" name="email" autocomplete="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="client-concern">Anything you'd like to share? <span style="opacity:0.6">(optional, private)</span></label>
+          <textarea class="form-input" id="client-concern" name="concern" placeholder="Anything you'd like to share before the session?" rows="3" maxlength="600"></textarea>
+        </div>
+        <!-- Honeypot — must stay invisible -->
+        <div class="honeypot" aria-hidden="true" tabindex="-1">
+          <label for="website">Leave blank</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" class="btn-book jost" id="btn-book" disabled>BOOK MY SESSION &nbsp;·&nbsp; ₹299</button>
+      </form>
+      <p class="payment-note">No payment now — the fee is collected via UPI during the session itself.</p>
+    </div>
+
+    <!-- Success state (hidden until booked) -->
+    <div class="booking-success" id="booking-success" aria-live="polite">
+      <div class="success-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="success-title playfair">Your session is booked.</h3>
+      <p class="success-script">One small step, taken. ♡</p>
+      <div class="success-details" id="success-details"></div>
+      <a href="#" class="btn-join jost" id="btn-join" target="_blank" rel="noopener">Join your session</a>
+      <p class="success-email-note" id="success-email-note"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Qualifications + quote ── -->
+<section class="qual-quote reveal" aria-label="Qualifications">
+  <p class="qual-title jost">Qualifications</p>
+  <ul class="qual-list">
+    <li>B.Sc Clinical Psychology</li>
+    <li>M.A. / M.Sc Psychology</li>
+    <li>Certified Graphologist</li>
+    <li>3+ years of 1-on-1 practice</li>
+  </ul>
+  <div class="quote-block">
+    <p class="quote-text">"You don't have to have it all figured out. You just have to take the first step."</p>
+    <p class="quote-attr jost">— Shruti Agrawal</p>
+  </div>
+</section>
+
+<!-- ── Online pill ── -->
+<div class="online-pill reveal">
+  <span class="jost">Online sessions only &nbsp;·&nbsp; Video call</span>
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-maroon">
+    <p class="footer-script">Your healing is worth it.</p>
+    <p class="footer-email"><a href="mailto:">Write to Shruti</a></p>
+  </div>
+  <div class="footer-cream">
+    <p class="footer-trust jost">Your space &nbsp;·&nbsp; Your time &nbsp;·&nbsp; Your healing &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Supportive &nbsp;·&nbsp; Non-judgmental</p>
+  </div>
+  <div class="footer-forest">
+    <p class="footer-you jost">You matter. Your feelings are valid. You deserve support.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  // ── State ──
+  const DOW = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let days = [];
+  let selectedDate = null;
+  let selectedTime = null;
+  let refreshTimer = null;
+
+  // ── DOM refs ──
+  const dateScroll = document.getElementById('date-scroll');
+  const slotGrid   = document.getElementById('slot-grid');
+  const errBox     = document.getElementById('booking-error');
+  const bookingForm = document.getElementById('booking-form');
+  const btnBook    = document.getElementById('btn-book');
+  const widgetForm = document.getElementById('widget-form');
+  const successEl  = document.getElementById('booking-success');
+
+  // ── Helpers ──
+  function parseDate(s){const[y,m,d]=s.split('-').map(Number);return{y,m,d};}
+  function formatChip(s){
+    const {y,m,d}=parseDate(s);
+    const dt=new Date(Date.UTC(y,m-1,d));
+    return{dow:DOW[dt.getUTCDay()],day:d,mon:MONTHS[m-1]};
+  }
+
+  function showError(msg){
+    errBox.textContent=msg;
+    errBox.classList.add('visible');
+  }
+  function clearError(){
+    errBox.textContent='';
+    errBox.classList.remove('visible');
+  }
+
+  function updateBookBtn(){
+    btnBook.disabled=!(selectedDate && selectedTime);
+  }
+
+  // ── Load slots ──
+  async function loadSlots(){
+    try{
+      const r=await fetch('/api/slots');
+      const j=await r.json();
+      days=j.days||[];
+      renderDates();
+    }catch(e){
+      console.error('slots fetch error',e);
+    }
+  }
+
+  // ── Render dates ──
+  function renderDates(){
+    dateScroll.innerHTML='';
+    if(!days.length){
+      dateScroll.innerHTML='<span class="slot-empty">No available dates right now.</span>';
+      return;
+    }
+    days.forEach(d=>{
+      const chip=document.createElement('button');
+      chip.className='date-chip'+(d.date===selectedDate?' selected':'');
+      chip.type='button';
+      chip.setAttribute('aria-pressed',d.date===selectedDate?'true':'false');
+      const info=formatChip(d.date);
+      chip.innerHTML=`<span class="date-chip-dow">${info.dow}</span><span class="date-chip-day">${info.day}</span><span class="date-chip-mon">${info.mon}</span>`;
+      chip.addEventListener('click',()=>selectDate(d.date));
+      dateScroll.appendChild(chip);
+    });
+  }
+
+  // ── Select date ──
+  function selectDate(date){
+    selectedDate=date;
+    selectedTime=null;
+    updateBookBtn();
+    renderDates();
+    renderSlots();
+  }
+
+  // ── Render slots ──
+  function renderSlots(){
+    slotGrid.innerHTML='';
+    if(!selectedDate){slotGrid.innerHTML='<span class="slot-empty">Select a day to see available times.</span>';return;}
+    const day=days.find(d=>d.date===selectedDate);
+    if(!day||!day.slots.length){slotGrid.innerHTML='<span class="slot-empty">No times available for this day.</span>';return;}
+    day.slots.forEach(t=>{
+      const pill=document.createElement('button');
+      pill.className='slot-pill'+(t===selectedTime?' selected':'');
+      pill.type='button';
+      pill.setAttribute('aria-pressed',t===selectedTime?'true':'false');
+      pill.textContent=prettyTime(t);
+      pill.addEventListener('click',()=>selectTime(t));
+      slotGrid.appendChild(pill);
+    });
+  }
+
+  function prettyTime(hhmm){
+    const[h,m]=hhmm.split(':').map(Number);
+    const ampm=h<12?'AM':'PM';
+    const h12=h%12===0?12:h%12;
+    return `${h12}:${String(m).padStart(2,'0')} ${ampm}`;
+  }
+
+  // ── Select time ──
+  function selectTime(t){
+    selectedTime=t;
+    updateBookBtn();
+    renderSlots();
+    clearError();
+  }
+
+  // ── Submit booking ──
+  bookingForm.addEventListener('submit',async e=>{
+    e.preventDefault();
+    clearError();
+    const name=document.getElementById('client-name').value.trim();
+    const email=document.getElementById('client-email').value.trim();
+    const concern=document.getElementById('client-concern').value.trim();
+    const website=document.getElementById('website').value;
+
+    if(!selectedDate){showError('Please select a date.');return;}
+    if(!selectedTime){showError('Please select a time slot.');return;}
+    if(!name||name.length<2){showError('Please enter your name (at least 2 characters).');return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showError('Please enter a valid email address.');return;}
+
+    btnBook.disabled=true;
+    btnBook.textContent='Booking your slot…';
+
+    try{
+      const res=await fetch('/api/book',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({date:selectedDate,time:selectedTime,name,email,concern,website}),
+      });
+      const j=await res.json();
+
+      if(res.status===409){
+        showError(j.error||'That slot was just taken. Please choose another.');
+        await loadSlots();
+        selectedTime=null;
+        updateBookBtn();
+        renderSlots();
+        btnBook.disabled=false;
+        btnBook.textContent='BOOK MY SESSION · ₹299';
+        return;
+      }
+      if(!res.ok){
+        showError(j.error||'Something went wrong. Please try again.');
+        btnBook.disabled=false;
+        btnBook.textContent='BOOK MY SESSION · ₹299';
+        return;
+      }
+
+      // Success
+      clearRefresh();
+      showSuccess(j.booking);
+    }catch(err){
+      showError('Network error. Please check your connection and try again.');
+      btnBook.disabled=false;
+      btnBook.textContent='BOOK MY SESSION · ₹299';
+    }
+  });
+
+  function escHtml(s){
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function showSuccess(b){
+    widgetForm.style.display='none';
+    successEl.classList.add('visible');
+    document.getElementById('btn-join').href=b.meetLink;
+    document.getElementById('success-details').innerHTML=`
+      <div class="success-row"><span class="success-row-label">Date</span><span class="success-row-value">${escHtml(b.prettyDate)}</span></div>
+      <div class="success-row"><span class="success-row-label">Time (IST)</span><span class="success-row-value">${escHtml(b.prettyTime)}</span></div>
+      <div class="success-row"><span class="success-row-label">Join link</span><span class="success-row-value"><a href="${escHtml(b.meetLink)}" target="_blank" rel="noopener">${escHtml(b.meetLink)}</a></span></div>
+    `;
+    const note=b.emailSent
+      ?'A confirmation with your session link and a calendar invite has been sent to your email.'
+      :'Your booking is confirmed. (We couldn\'t reach you by email right now — please note the join link above.)';
+    document.getElementById('success-email-note').textContent=note;
+    successEl.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  // ── Auto-refresh every 60 s ──
+  function startRefresh(){
+    refreshTimer=setInterval(async()=>{
+      const prevDate=selectedDate;
+      const prevTime=selectedTime;
+      await loadSlots();
+      // restore selection if still valid
+      const dayStillExists=days.find(d=>d.date===prevDate);
+      if(dayStillExists&&prevTime&&dayStillExists.slots.includes(prevTime)){
+        selectedDate=prevDate;
+        selectedTime=prevTime;
+      }else{
+        selectedTime=null;
+      }
+      updateBookBtn();
+      renderDates();
+      renderSlots();
+    },60000);
+  }
+  function clearRefresh(){if(refreshTimer)clearInterval(refreshTimer);}
+
+  // ── Scroll reveal ──
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  // ── Init ──
+  loadSlots().then(startRefresh);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shruti's Dashboard — Private</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;1,400&family=Jost:wght@300;400;500;600&family=Satisfy&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF3EE;--blush:#F7E4DD;--rose:#D89FA4;--maroon:#8E4549;--maroon-deep:#6F343C;--forest:#3E4A33;
+  --ink:#43373A;--soft:#8A7378;--line:#ECD8D1;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:'Jost',sans-serif;font-size:15px;min-height:100vh}
+.playfair{font-family:'Playfair Display',serif}
+.lora{font-family:'Lora',serif}
+.satisfy{font-family:'Satisfy',cursive}
+a{color:inherit;text-decoration:none}
+
+/* ── Login ── */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.login-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:44px 36px;width:100%;max-width:380px;text-align:center;position:relative}
+.login-private{font-size:9px;letter-spacing:0.2em;color:var(--soft);text-transform:uppercase;margin-bottom:20px;border:1px dashed var(--line);display:inline-block;padding:5px 12px;border-radius:99px}
+.login-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--ink);margin-bottom:6px}
+.login-sub{font-size:11px;color:var(--soft);margin-bottom:28px;font-family:'Lora',serif}
+.form-label{font-size:9.5px;letter-spacing:0.18em;color:var(--soft);text-transform:uppercase;display:block;text-align:left;margin-bottom:6px}
+.form-input{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:8px;font-family:'Lora',serif;font-size:14px;color:var(--ink);background:#fff;outline:none;transition:border-color 0.15s}
+.form-input:focus{border-color:var(--maroon)}
+.btn-primary{width:100%;padding:13px;background:var(--maroon);color:#fff;border:none;border-radius:99px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;margin-top:16px;transition:background 0.15s}
+.btn-primary:hover{background:var(--maroon-deep)}
+.btn-primary:disabled{opacity:0.65;cursor:not-allowed}
+.btn-primary:focus-visible{outline:2px solid var(--maroon);outline-offset:2px}
+.login-error{color:#8E4549;font-size:12px;margin-top:10px;font-family:'Lora',serif;min-height:16px}
+.login-footer{font-family:'Satisfy',cursive;font-size:14px;color:var(--soft);margin-top:28px}
+.login-copy{font-size:9px;letter-spacing:0.12em;color:var(--line);text-transform:uppercase;margin-top:8px}
+
+/* ── App shell ── */
+#app-shell{display:none}
+.app-header{background:#fff;border-bottom:1px solid var(--line);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50}
+.app-greeting{font-family:'Playfair Display',serif;font-size:18px;color:var(--ink)}
+.btn-logout{font-size:9.5px;letter-spacing:0.16em;color:var(--soft);text-transform:uppercase;background:none;border:1px solid var(--line);border-radius:99px;padding:6px 14px;cursor:pointer;font-family:'Jost',sans-serif}
+.btn-logout:hover{border-color:var(--maroon);color:var(--maroon)}
+
+/* Tabs */
+.tabs{display:flex;gap:8px;padding:20px 24px 0;border-bottom:1px solid var(--line);background:var(--cream);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;padding:9px 18px;border-radius:8px 8px 0 0;border:1px solid var(--line);border-bottom:none;background:#fff;cursor:pointer;color:var(--soft);font-family:'Jost',sans-serif;transition:background 0.15s,color 0.15s;position:relative;bottom:-1px;white-space:nowrap}
+.tab-btn.active{background:var(--forest);color:#fff;border-color:var(--forest)}
+.tab-panel{display:none;padding:28px 24px;max-width:720px}
+.tab-panel.active{display:block}
+
+/* Booking cards */
+.section-title{font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--soft);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.show-past-label{font-size:11px;letter-spacing:0.1em;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--soft);font-weight:400}
+.show-past-label input{accent-color:var(--maroon);cursor:pointer}
+.booking-card{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.booking-card-header{padding:16px 18px 12px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px}
+.booking-meta{flex:1}
+.booking-datetime{font-family:'Playfair Display',serif;font-size:15px;color:var(--ink);margin-bottom:4px}
+.booking-client{font-size:11px;color:var(--soft)}
+.booking-client a{color:var(--maroon);text-decoration:none}
+.booking-client a:hover{text-decoration:underline}
+.status-badge{font-size:8.5px;letter-spacing:0.16em;text-transform:uppercase;padding:4px 10px;border-radius:99px;flex-shrink:0;align-self:flex-start}
+.status-confirmed{background:#E8F5E9;color:#2E7D32}
+.status-cancelled{background:#FBE9E7;color:#8E4549}
+.booking-note{background:var(--blush);border-top:1px solid var(--line);padding:12px 18px;font-family:'Lora',serif;font-size:13px;color:var(--ink);font-style:italic}
+.booking-actions{padding:12px 18px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn-join-sm{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;padding:7px 14px;border-radius:99px;background:rgba(62,74,51,0.1);color:var(--forest);border:1px solid var(--forest);font-family:'Jost',sans-serif;text-decoration:none}
+.btn-cancel{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;padding:7px 14px;border-radius:99px;background:none;color:var(--maroon);border:1px solid var(--maroon);font-family:'Jost',sans-serif;cursor:pointer}
+.btn-cancel:hover{background:var(--maroon);color:#fff}
+.btn-cancel:disabled{opacity:0.4;cursor:not-allowed}
+.empty-state{font-family:'Lora',serif;font-size:14px;color:var(--soft);text-align:center;padding:48px 20px;font-style:italic}
+
+/* Availability table */
+.avail-note{font-size:11px;color:var(--soft);font-family:'Lora',serif;margin-bottom:20px}
+.avail-table-wrap{overflow-x:auto}
+table.avail-table{width:100%;border-collapse:collapse;min-width:480px}
+.avail-table th{font-size:9px;letter-spacing:0.18em;color:var(--soft);text-transform:uppercase;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;text-align:left}
+.avail-table td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+.avail-table tr:last-child td{border-bottom:none}
+.toggle-switch{position:relative;display:inline-block;width:36px;height:20px}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:var(--line);border-radius:10px;cursor:pointer;transition:background 0.2s}
+.toggle-slider::before{content:'';position:absolute;width:14px;height:14px;left:3px;top:3px;background:#fff;border-radius:50%;transition:transform 0.2s}
+.toggle-switch input:checked+.toggle-slider{background:var(--forest)}
+.toggle-switch input:checked+.toggle-slider::before{transform:translateX(16px)}
+.avail-table input[type=time],.avail-table select{padding:7px 10px;border:1.5px solid var(--line);border-radius:6px;font-family:'Jost',sans-serif;font-size:12px;color:var(--ink);background:#fff;outline:none;transition:border-color 0.15s}
+.avail-table input[type=time]:focus,.avail-table select:focus{border-color:var(--maroon)}
+.avail-table input:disabled,.avail-table select:disabled{background:#F9F3F0;color:var(--line);cursor:not-allowed}
+.btn-save{padding:12px 28px;background:var(--maroon);color:#fff;border:none;border-radius:99px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;margin-top:20px;transition:background 0.15s}
+.btn-save:hover{background:var(--maroon-deep)}
+.btn-save:disabled{opacity:0.65;cursor:not-allowed}
+
+/* Days off */
+.blocks-form{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:24px}
+.blocks-form-title{font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--soft);margin-bottom:12px}
+.blocks-inline{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.blocks-inline .form-group{margin:0}
+.blocks-inline .form-label{margin-bottom:5px}
+.blocks-inline .form-input{padding:9px 12px;font-size:13px}
+.btn-block{padding:9px 20px;background:var(--maroon);color:#fff;border:none;border-radius:8px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;align-self:flex-end;white-space:nowrap}
+.btn-block:hover{background:var(--maroon-deep)}
+.block-item{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+.block-info{font-size:13px;color:var(--ink)}
+.block-time{font-size:11px;color:var(--soft);margin-top:2px}
+.btn-unblock{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;padding:6px 13px;border-radius:99px;border:1px solid var(--maroon);color:var(--maroon);background:none;cursor:pointer;font-family:'Jost',sans-serif}
+.btn-unblock:hover{background:var(--maroon);color:#fff}
+
+/* Toast */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--forest);color:#fff;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.14em;padding:12px 24px;border-radius:99px;z-index:999;transition:transform 0.3s ease,opacity 0.3s ease;opacity:0;pointer-events:none;max-width:calc(100vw - 32px);text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast.error{background:var(--maroon)}
+
+/* ── Mobile improvements ── */
+@media(max-width:600px){
+  /* Login */
+  .login-card{padding:32px 22px}
+
+  /* App header */
+  .app-header{padding:12px 16px}
+  .app-greeting{font-size:15px}
+
+  /* Tabs */
+  .tabs{padding:16px 16px 0;gap:6px}
+  .tab-btn{font-size:9px;padding:8px 14px;letter-spacing:0.14em}
+
+  /* Tab panels */
+  .tab-panel{padding:20px 14px}
+
+  /* Booking cards */
+  .booking-card-header{flex-direction:column;gap:6px}
+  .booking-actions{gap:8px}
+  .btn-join-sm,.btn-cancel{font-size:9px;padding:8px 13px}
+
+  /* Availability table — let it scroll */
+  .avail-table-wrap{margin:0 -4px}
+  .avail-table th,.avail-table td{padding:8px 8px}
+  .avail-table input[type=time],.avail-table select{padding:6px 8px;font-size:11px}
+  .btn-save{width:100%}
+
+  /* Blocks form */
+  .blocks-form{padding:18px 14px}
+  .blocks-inline{flex-direction:column;gap:10px}
+  .blocks-inline .form-input{width:100%}
+  .btn-block{width:100%;padding:11px}
+
+  /* Block list items */
+  .block-item{padding:12px 14px}
+}
+
+@media(max-width:380px){
+  .app-greeting{font-size:13px}
+  .btn-logout{font-size:8.5px;padding:5px 10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Login screen ── -->
+<div id="login-screen">
+  <div class="login-card">
+    <p class="login-private">Private — for Didi's eyes only</p>
+    <h1 class="login-title playfair">Shruti's Dashboard</h1>
+    <p class="login-sub lora">Welcome home, Shruti. Please verify your access.</p>
+    <form id="login-form" novalidate>
+      <label class="form-label" for="login-password">Secret Key</label>
+      <input class="form-input" type="password" id="login-password" placeholder="••••••••••••" autocomplete="current-password" required>
+      <p class="login-error" id="login-error" role="alert" aria-live="polite"></p>
+      <button type="submit" class="btn-primary" id="btn-login">Open Dashboard</button>
+    </form>
+    <p class="login-footer">Warmly, Shruti ♡</p>
+    <p class="login-copy">© 2026 Shruti Agrawal · Internal Secure Access</p>
+  </div>
+</div>
+
+<!-- ── App shell ── -->
+<div id="app-shell">
+  <header class="app-header">
+    <span class="app-greeting playfair">Hello, Shruti ♡</span>
+    <button class="btn-logout" id="btn-logout">Log out</button>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="bookings">Bookings</button>
+    <button class="tab-btn" data-tab="hours">Weekly Hours</button>
+    <button class="tab-btn" data-tab="daysoff">Days Off</button>
+  </div>
+
+  <!-- Bookings tab -->
+  <div id="tab-bookings" class="tab-panel active">
+    <p class="section-title">
+      Upcoming Sessions
+      <label class="show-past-label"><input type="checkbox" id="show-past"> show past &amp; cancelled</label>
+    </p>
+    <div id="bookings-list"></div>
+  </div>
+
+  <!-- Weekly hours tab -->
+  <div id="tab-hours" class="tab-panel">
+    <p class="avail-note lora">All times are IST. Changes apply to new bookings only.</p>
+    <div class="avail-table-wrap">
+      <table class="avail-table" id="avail-table">
+        <thead><tr>
+          <th>Day</th><th>Open</th><th>From</th><th>To</th><th>Session Length</th>
+        </tr></thead>
+        <tbody id="avail-body"></tbody>
+      </table>
+    </div>
+    <button class="btn-save" id="btn-save-avail">Save Weekly Hours</button>
+  </div>
+
+  <!-- Days off tab -->
+  <div id="tab-daysoff" class="tab-panel">
+    <div class="blocks-form">
+      <p class="blocks-form-title">Block a Day or a Single Slot</p>
+      <p style="font-family:'Lora',serif;font-size:12px;color:var(--soft);margin-bottom:16px">Block the date and it disappears from the booking page.</p>
+      <div class="blocks-inline">
+        <div class="form-group">
+          <label class="form-label" for="block-date">Date</label>
+          <input class="form-input" type="date" id="block-date" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="block-time">Time slot (optional)</label>
+          <input class="form-input" type="time" id="block-time" placeholder="Leave blank for whole day">
+        </div>
+        <button class="btn-block" id="btn-block-it">Block it</button>
+      </div>
+    </div>
+    <p class="section-title">Scheduled Blocks</p>
+    <div id="blocks-list"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  'use strict';
+  const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  let token = sessionStorage.getItem('shruti_admin_token') || null;
+
+  // ── Toast ──
+  let toastTimer;
+  function showToast(msg, isError){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (isError ? ' error' : '') + ' show';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.className = 'toast' + (isError ? ' error' : ''); }, 3500);
+  }
+
+  // ── Auth ──
+  function authHeader(){ return { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }; }
+
+  async function apiFetch(path, opts={}){
+    const res = await fetch('/api/admin' + path, {
+      ...opts,
+      headers: { ...authHeader(), ...(opts.headers||{}) },
+    });
+    if(res.status === 401){
+      handleLogout('Session expired — please log in again.');
+      throw new Error('Unauthorized');
+    }
+    return res;
+  }
+
+  // ── HTML escape ──
+  function escHtml(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Login ──
+  const loginForm = document.getElementById('login-form');
+  const loginErr  = document.getElementById('login-error');
+  const btnLogin  = document.getElementById('btn-login');
+
+  loginForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    loginErr.textContent = '';
+    const pwd = document.getElementById('login-password').value;
+    if(!pwd){ loginErr.textContent = 'Please enter your password.'; return; }
+    btnLogin.disabled = true;
+    btnLogin.textContent = 'Verifying…';
+    try{
+      const res = await fetch('/api/admin/login', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({password: pwd}),
+      });
+      const j = await res.json();
+      if(!res.ok){ loginErr.textContent = j.error || 'Incorrect password.'; return; }
+      token = j.token;
+      sessionStorage.setItem('shruti_admin_token', token);
+      showApp();
+    }catch(err){
+      loginErr.textContent = 'Network error. Please try again.';
+    }finally{
+      btnLogin.disabled = false;
+      btnLogin.textContent = 'Open Dashboard';
+    }
+  });
+
+  function showApp(){
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app-shell').style.display = 'block';
+    loadBookings();
+    loadAvailability();
+    loadBlocks();
+  }
+
+  function handleLogout(msg){
+    token = null;
+    sessionStorage.removeItem('shruti_admin_token');
+    document.getElementById('app-shell').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+    if(msg) document.getElementById('login-error').textContent = msg;
+  }
+
+  document.getElementById('btn-logout').addEventListener('click', () => handleLogout(''));
+
+  // Auto-login if token exists
+  if(token){
+    showApp();
+  }
+
+  // ── Tabs ──
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ── Pretty date/time ──
+  function prettyDate(s){
+    const [y,m,d] = s.split('-').map(Number);
+    const dt = new Date(Date.UTC(y,m-1,d));
+    return dt.toLocaleDateString('en-IN',{timeZone:'UTC',weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  }
+  function prettyTime(hhmm){
+    const [h,m] = hhmm.split(':').map(Number);
+    const ampm = h < 12 ? 'AM' : 'PM';
+    const h12 = h%12===0?12:h%12;
+    return `${h12}:${String(m).padStart(2,'0')} ${ampm}`;
+  }
+
+  // ── Bookings ──
+  document.getElementById('show-past').addEventListener('change', loadBookings);
+
+  async function loadBookings(){
+    const all = document.getElementById('show-past').checked ? '?all=1' : '';
+    const listEl = document.getElementById('bookings-list');
+    try{
+      const res = await apiFetch('/bookings' + all);
+      const j = await res.json();
+      renderBookings(j.bookings || []);
+    }catch(e){ if(e.message !== 'Unauthorized') listEl.innerHTML = '<p class="empty-state">Could not load bookings.</p>'; }
+  }
+
+  function renderBookings(bookings){
+    const listEl = document.getElementById('bookings-list');
+    if(!bookings.length){ listEl.innerHTML = '<p class="empty-state">Nothing here. Enjoy the calm. ♡</p>'; return; }
+    listEl.innerHTML = bookings.map(b => `
+      <div class="booking-card" id="booking-${escHtml(b._id)}">
+        <div class="booking-card-header">
+          <div class="booking-meta">
+            <p class="booking-datetime playfair">${escHtml(prettyDate(b.date))} &nbsp;·&nbsp; ${escHtml(prettyTime(b.time))}</p>
+            <p class="booking-client">${escHtml(b.name)} &nbsp;·&nbsp; <a href="mailto:${escHtml(b.email)}">${escHtml(b.email)}</a></p>
+          </div>
+          <span class="status-badge ${b.status === 'confirmed' ? 'status-confirmed' : 'status-cancelled'}">${escHtml(b.status)}</span>
+        </div>
+        ${b.concern ? `<div class="booking-note">"${escHtml(b.concern)}"</div>` : ''}
+        <div class="booking-actions">
+          <a class="btn-join-sm" href="${escHtml(b.meetLink)}" target="_blank" rel="noopener">Join link</a>
+          ${b.status === 'confirmed' ? `<button class="btn-cancel" data-id="${escHtml(b._id)}" onclick="cancelBooking('${escHtml(b._id)}',this)">Cancel</button>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  window.cancelBooking = async function(id, btn){
+    if(!confirm('Cancel this booking? The client will be notified by email.')) return;
+    btn.disabled = true;
+    btn.textContent = 'Cancelling…';
+    try{
+      const res = await apiFetch(`/bookings/${id}/cancel`, { method:'POST', body: JSON.stringify({}) });
+      const j = await res.json();
+      if(!res.ok){ showToast(j.error || 'Could not cancel.', true); btn.disabled = false; btn.textContent = 'Cancel'; return; }
+      showToast('Cancelled — client notified by email.' + (j.emailSent ? '' : ' (Email delivery failed — check logs.)'));
+      loadBookings();
+    }catch(e){ if(e.message !== 'Unauthorized'){ showToast('Network error.', true); btn.disabled = false; btn.textContent = 'Cancel'; } }
+  };
+
+  // ── Availability ──
+  async function loadAvailability(){
+    try{
+      const res = await apiFetch('/availability');
+      const j = await res.json();
+      renderAvail(j.availability || []);
+    }catch(e){ if(e.message !== 'Unauthorized') console.error('avail load', e); }
+  }
+
+  function renderAvail(rows){
+    const body = document.getElementById('avail-body');
+    // Create map by day
+    const byDay = Object.fromEntries(rows.map(r => [r.day, r]));
+    body.innerHTML = DAYS.map((name, i) => {
+      const r = byDay[i] || { day:i, enabled:false, start:'18:00', end:'21:00', slotMinutes:45 };
+      return `<tr>
+        <td><span style="font-size:12px;letter-spacing:0.1em;color:var(--ink)">${name}</span></td>
+        <td><label class="toggle-switch"><input type="checkbox" data-day="${i}" class="avail-toggle" ${r.enabled?'checked':''}><span class="toggle-slider"></span></label></td>
+        <td><input type="time" data-day="${i}" class="avail-start" value="${escHtml(r.start)}" ${r.enabled?'':'disabled'}></td>
+        <td><input type="time" data-day="${i}" class="avail-end" value="${escHtml(r.end)}" ${r.enabled?'':'disabled'}></td>
+        <td><select data-day="${i}" class="avail-slot" ${r.enabled?'':'disabled'}>
+          <option value="30" ${r.slotMinutes===30?'selected':''}>30 min</option>
+          <option value="45" ${r.slotMinutes===45?'selected':''}>45 min</option>
+          <option value="60" ${r.slotMinutes===60?'selected':''}>60 min</option>
+          <option value="90" ${r.slotMinutes===90?'selected':''}>90 min</option>
+        </select></td>
+      </tr>`;
+    }).join('');
+
+    // Toggle enables/disables inputs
+    document.querySelectorAll('.avail-toggle').forEach(tog => {
+      tog.addEventListener('change', () => {
+        const d = tog.dataset.day;
+        const en = tog.checked;
+        document.querySelector(`.avail-start[data-day="${d}"]`).disabled = !en;
+        document.querySelector(`.avail-end[data-day="${d}"]`).disabled = !en;
+        document.querySelector(`.avail-slot[data-day="${d}"]`).disabled = !en;
+      });
+    });
+  }
+
+  document.getElementById('btn-save-avail').addEventListener('click', async () => {
+    const availability = Array.from({length:7}, (_, i) => {
+      const tog   = document.querySelector(`.avail-toggle[data-day="${i}"]`);
+      const start = document.querySelector(`.avail-start[data-day="${i}"]`).value;
+      const end   = document.querySelector(`.avail-end[data-day="${i}"]`).value;
+      const slot  = parseInt(document.querySelector(`.avail-slot[data-day="${i}"]`).value);
+      return { day:i, enabled: tog.checked, start, end, slotMinutes: slot };
+    });
+
+    const btn = document.getElementById('btn-save-avail');
+    btn.disabled = true; btn.textContent = 'Saving…';
+    try{
+      const res = await apiFetch('/availability', { method:'PUT', body: JSON.stringify({availability}) });
+      const j = await res.json();
+      if(!res.ok){ showToast((j.errors||[j.error]).join(' · '), true); return; }
+      showToast('Weekly hours saved.');
+    }catch(e){ if(e.message !== 'Unauthorized') showToast('Network error.', true); }
+    finally{ btn.disabled = false; btn.textContent = 'Save Weekly Hours'; }
+  });
+
+  // ── Blocks ──
+  async function loadBlocks(){
+    try{
+      const res = await apiFetch('/blocks');
+      const j = await res.json();
+      renderBlocks(j.blocks || []);
+    }catch(e){ if(e.message !== 'Unauthorized') console.error('blocks load', e); }
+  }
+
+  function renderBlocks(blocks){
+    const listEl = document.getElementById('blocks-list');
+    if(!blocks.length){ listEl.innerHTML = '<p class="empty-state">Nothing blocked. Enjoy the open calendar.</p>'; return; }
+    listEl.innerHTML = blocks.map(b => `
+      <div class="block-item">
+        <div>
+          <p class="block-info">${escHtml(prettyDate(b.date))}</p>
+          <p class="block-time">${b.time ? escHtml(prettyTime(b.time)) : 'Whole day'}</p>
+        </div>
+        <button class="btn-unblock" onclick="unblock('${escHtml(b._id)}',this)">Unblock</button>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('btn-block-it').addEventListener('click', async () => {
+    const date = document.getElementById('block-date').value;
+    const time = document.getElementById('block-time').value || null;
+    if(!date){ showToast('Please select a date.', true); return; }
+    const btn = document.getElementById('btn-block-it');
+    btn.disabled = true;
+    try{
+      const res = await apiFetch('/blocks', { method:'POST', body: JSON.stringify({date, time}) });
+      const j = await res.json();
+      if(!res.ok){ showToast(j.error || 'Could not create block.', true); return; }
+      showToast('Block added.');
+      document.getElementById('block-date').value = '';
+      document.getElementById('block-time').value = '';
+      loadBlocks();
+    }catch(e){ if(e.message !== 'Unauthorized') showToast('Network error.', true); }
+    finally{ btn.disabled = false; }
+  });
+
+  window.unblock = async function(id, btn){
+    btn.disabled = true;
+    try{
+      const res = await apiFetch(`/blocks/${id}`, { method:'DELETE' });
+      const j = await res.json();
+      if(!res.ok){ showToast(j.error || 'Could not unblock.', true); btn.disabled = false; return; }
+      showToast('Block removed.');
+      loadBlocks();
+    }catch(e){ if(e.message !== 'Unauthorized'){ showToast('Network error.', true); btn.disabled = false; } }
+  };
+
+})();
+</script>
+</body>
+</html>
